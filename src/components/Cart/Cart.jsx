@@ -2,7 +2,7 @@ import React from 'react';
 import './Cart.css'
 
 const Cart = ({cart}) => {
-
+    console.log(cart)
     let total = 0;
     let shipping = 0;
     for(const product of cart){
@@ -16,10 +16,10 @@ const Cart = ({cart}) => {
     return (
         <div className='cart'>
             <h3>Order Summary </h3>
-            <p>Selected item</p>
-            <p>Total Price :${total}</p>
+            <p>Selected item : {cart.length}</p>
+            <p>Total Price : ${total}</p>
             <p>Shipping charge : {shipping}</p>
-            <p>Tex: {tex.toFixed(2)}</p>
+            <p>Tex : {tex.toFixed(2)}</p>
             <h5>Grand total: {grandTotal.toFixed(2)} </h5>
         </div>
     );
