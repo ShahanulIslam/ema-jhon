@@ -3,6 +3,9 @@ import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fa
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import "./Shop.css"
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Shop = () => {
     const [products, setProducts] = useState([])
@@ -15,16 +18,16 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, [])
 
-    useEffect( () =>{
+    useEffect(() => {
         const storedCart = getShoppingCart()
-        let savedCart =[]
+        let savedCart = []
 
         // Get id
-        for (const id in storedCart){
+        for (const id in storedCart) {
             // Get product from products 
-            const addedProduct =products.find (product => product.id === id)
+            const addedProduct = products.find(product => product.id === id)
 
-            if(addedProduct){
+            if (addedProduct) {
                 // Add quantity
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity
@@ -36,7 +39,7 @@ const Shop = () => {
         // Set the cart
         setCart(savedCart)
 
-    },[products])
+    }, [products])
 
 
     const handleAddToCart = (product) => {
@@ -45,8 +48,8 @@ const Shop = () => {
         addToDb(product.id)
 
     }
-    
-    const handleClearCart = () =>{
+
+    const handleClearCart = () => {
         setCart([])
         deleteShoppingCart()
     }
@@ -65,8 +68,13 @@ const Shop = () => {
             </div>
             <div className="cart-container">
                 <Cart cart={cart}
-                handleClearCart={handleClearCart}
-                ></Cart>
+                    handleClearCart={handleClearCart}
+                >
+                    <Link className='proceed-link' to="/order">
+                        <button className='btn-proceed'>Review Order
+                            <FontAwesomeIcon icon={faArrowRight} /></button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );

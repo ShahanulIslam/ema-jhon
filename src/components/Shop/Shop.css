@@ -9,3 +9,19 @@
     grid-template-columns: repeat(3 , 1fr);
     gap: 25px;
 }
+
+.btn-proceed{
+    width: 100%;
+    height: 56px;
+    font-size: 15px;
+    margin: 10px auto;
+    border-radius: 4px;
+    background: #ff9900;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.proceed-link{
+    text-decoration: none;
+}
